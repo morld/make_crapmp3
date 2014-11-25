@@ -117,14 +117,14 @@ def main():
 	
 	# それっぽいヘッダを生成
 	header = bytearray()
-							#frame sync (常に固定値)
+	#                       *frame sync (常に固定値)
 	header.append(bits2int([1, 1, 1, 1, 1, 1, 1, 1]))
-							#frame sync	#version MPEG1	#layer III	#protection CRC無
-	header.append(bits2int([1, 1, 1,	1, 1,			0, 1,		1]))
-							# bit rate 128kbps	#sampling rate 44100	# pad 	#extension
-	header.append(bits2int([1, 0, 0, 1,			0, 0,					0,		0]))
-							# channel mode js		#mode extension(dummy)	#copyright 著作権なし	#original	#emphasis
-	header.append(bits2int([0, 1,					0, 0,					0,				 		0,			0, 0]))
+	#                       *frame sync *version MPEG1  *layer III  *protection CRC無
+	header.append(bits2int([1, 1, 1,    1, 1,           0, 1,       1]))
+	#                       *bit rate 128kbps  *sampling rate 44100  *pad  *extension
+	header.append(bits2int([1, 0, 0, 1,        0, 0,                 0,    0]))
+	#                       *channel mode js   *mode extension(dummy) *copyright 著作権なし  *original  *emphasis
+	header.append(bits2int([0, 1,              0, 0,                  0,                     0,         0, 0]))
 	
 	for filecnt in range(arg.filecnt):
 		filename = ""
