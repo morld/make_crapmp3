@@ -1,0 +1,8 @@
+hoge
+huga
+foo
+bar
+this
+is
+a
+test
