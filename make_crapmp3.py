@@ -4,9 +4,7 @@
 # 今のところ当コードはpython3専用
 # ==================================================
 import sys
-import six
-if not six.PY3:
-	print("ERROR: this code is only python3...")
+if sys.version_info < (3,0,0):
 	sys.exit()
 
 # import
