@@ -63,7 +63,6 @@ def maketrash():
 	
 	mp3maker = mp3.DummyMp3Maker()
 	mp3maker.create_dummybuf()
-	header = mp3.DummyMp3Maker.make_header()	# それっぽいヘッダを生成
 	
 	for filecnt in range(args.filecnt):
 		filename = ""
@@ -73,12 +72,7 @@ def maketrash():
 			filename += "%02d" %(filecnt + 1) + "." + dummy_title
 		filename += ".mp3"
 		print(" " + filename)
-		with open(output_path + filename, "wb") as f:
-			max_frame = random.randrange(2048, 20480)
-			for i in range(max_frame):
-				f.write(header)
-				f.write(mp3maker.make_dummyframe())
-			f.write(header)
+		mp3maker.write_dummyfile(output_path + filename)
 	print("finish.")
 
 

@@ -38,9 +38,19 @@ class DummyMp3Maker:
 		upper = lower + random.randrange(1, 64)
 		for i in range(self.buf_len):
 			self.dummy_buf.append(random.randrange(lower, upper))
-		
+	
 	def make_dummyframe(self):
 		'''ダミーのフレームを作成する'''
 		left  = random.randrange(0, self.buf_len - 414)
 		right = left + 413	# フレームサイズ (1152サンプル*128bps*1000/8/44100 = 417.959 → 417-4byte(header)=413 ?)
 		return self.dummy_buf[left:right]
+	
+	def write_dummyfile(self, filename):
+		'''ダミーのmp3ファイルを作成する'''
+		header = DummyMp3Maker.make_header()
+		with open(filename, "wb") as f:
+			max_frame = random.randrange(2048, 20480)
+			for i in range(max_frame):
+				f.write(header)
+				f.write(self.make_dummyframe())
+			f.write(header)
