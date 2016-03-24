@@ -31,7 +31,7 @@ class DummyMp3Maker:
 		self.dummy_buf = bytearray()
 		self.buf_len = 32768
 	
-	def create_dummybuf(self):
+	def createbuf(self):
 		'''ダミーデータソースを作成する'''
 		self.dummy_buf.clear()
 		lower = random.randrange(0, 128)
@@ -45,7 +45,7 @@ class DummyMp3Maker:
 		right = left + 413	# フレームサイズ (1152サンプル*128bps*1000/8/44100 = 417.959 → 417-4byte(header)=413 ?)
 		return self.dummy_buf[left:right]
 	
-	def write_dummyfile(self, filename):
+	def writefile(self, filename):
 		'''ダミーのmp3ファイルを作成する'''
 		header = DummyMp3Maker.make_header()
 		with open(filename, "wb") as f:

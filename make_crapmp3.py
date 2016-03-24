@@ -62,7 +62,7 @@ def maketrash():
 	print("output: " + output_path)
 	
 	mp3maker = mp3.DummyMp3Maker()
-	mp3maker.create_dummybuf()
+	mp3maker.createbuf()
 	
 	for filecnt in range(args.filecnt):
 		filename = ""
@@ -72,7 +72,7 @@ def maketrash():
 			filename += "%02d" %(filecnt + 1) + "." + dummy_title
 		filename += ".mp3"
 		print(" " + filename)
-		mp3maker.write_dummyfile(output_path + filename)
+		mp3maker.writefile(output_path + filename)
 	print("finish.")
 
 
