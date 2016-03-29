@@ -39,7 +39,7 @@ def pickword(dic_filename):
 
 def maketrash():
 	'''メイン処理'''
-	args = arg.ArgParser(sys.argv)
+	args = arg.ArgParser()
 	
 	# dicをチェック
 	dummy_title = pickword(args.dic_name)

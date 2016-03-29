@@ -1,39 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import argparse
+
 # class
 # ==================================================
 class ArgParser:
 	'''オプション解析 クラス'''
 	
-	def __init__(self, argv):
+	def __init__(self):
 		'''初期化'''
+		parser = argparse.ArgumentParser(description="Make crap MP3.")
+		parser.add_argument("--o", 	default="",help="output filename")
+		parser.add_argument("--c", 	default=1,	help="num of output file", type=int)
+		parser.add_argument("--dic",default="",help="script choose words randomly in dictionary to make filename")
+		args = parser.parse_args()
 		
-		self.output_path	= "."
-		self.dic_name		= ""
-		self.filecnt		= 1
-		
-		index  = 0
-		maxarg = len(argv)
-		while True:
-			if maxarg <= index: break
-			opt = argv[index]
-			# 出力先
-			if opt == "-o":
-				index += 1
-				if maxarg <= index: break
-				self.output_path = argv[index]
-			# ファイル名辞書
-			elif opt == "-dic":
-				index += 1
-				if maxarg <= index: break
-				self.dic_name = argv[index]
-			# ファイル数
-			elif opt == "-c":
-				index += 1
-				if maxarg <= index: break
-				self.filecnt = int(argv[index])
-				if self.filecnt < 1:
-					print("WARN: invalid file cnt: " + argv[index])
-					self.filecnt = 1
-			index += 1
+		self.output_path = args.o
+		self.dic_name = args.dic
+		self.filecnt = args.c
