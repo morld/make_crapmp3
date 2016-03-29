@@ -43,7 +43,7 @@ def maketrash():
 	
 	# dicをチェック
 	dummy_title = pickword(args.dic_name)
-	if dummy_title is "":
+	if not dummy_title:
 		dummy_title = "crap"
 	
 	# フォルダ生成
